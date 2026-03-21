@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakariae Elghouali | Ingénieur Big Data & Cloud</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config for Custom Theme & Animations -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Google Sans Flex"', '"Google Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#4285F4',
+                            red: '#EA4335',
+                            yellow: '#FBBC04',
+                            purple: '#a78bfa',
+                            green: '#34A853'
+                        }
+                    },
+                    animation: {
+                        'float-1': 'float-slow 15s ease-in-out infinite',
+                        'float-2': 'float-slower 20s ease-in-out infinite',
+                        'float-3': 'float-slow 18s ease-in-out infinite reverse',
+                        'fade-in-up-1': 'fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.1s',
+                        'fade-in-up-2': 'fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s',
+                        'fade-in-up-3': 'fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s',
+                        'fade-in-up-4': 'fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.7s',
+                    },
+                    keyframes: {
+                        'float-slow': {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                        },
+                        'float-slower': {
+                            '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+                            '33%': { transform: 'translate(-30px, 40px) scale(1.05)' },
+                            '66%': { transform: 'translate(40px, -20px) scale(0.95)' },
+                        },
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* =========================================
+           DESIGN SYSTEM CSS & DARK MODE SUPPORT
+           ========================================= */
+        :root {
+            --palette-grey-900: #2F3034;
+            --palette-grey-800: #45474D;
+            --palette-grey-50: #E6EAF0;
+            --palette-grey-0: #FFFFFF;
+            --palette-grey-1000: #212226;
+            --palette-grey-20: #EFF2F7;
+            --palette-grey-1200: #121317;
+            --palette-grey-1100: #18191D;
+            --palette-grey-10: #F8F9FC;
+            --palette-grey-100: #E1E6EC;
+            --palette-grey-200: #CDD4DC;
+            --palette-grey-300: #B2BBC5;
+            --palette-grey-400: #B7BFD9;
+            --palette-grey-600: #AAB1CC4D;
+            
+            --palette-grey-0-rgb: 255, 255, 255;
+            --palette-grey-1000-rgb: 33, 34, 38;
+            --palette-grey-1200-rgb: 18, 19, 23;
+
+            /* LIGHT MODE */
+            --theme-surface-surface: var(--palette-grey-0);
+            --theme-surface-surface-rgb: 255, 255, 255;
+            --theme-surface-on-surface: var(--palette-grey-1200);
+            --theme-surface-on-surface-variant: var(--palette-grey-800);
+            --theme-surface-surface-container: var(--palette-grey-10);
+            --theme-surface-surface-container-rgb: 248, 249, 252;
+            --theme-surface-surface-container-high: var(--palette-grey-20);
+            --theme-surface-surface-container-higher: var(--palette-grey-50);
+            --theme-outline-variant: rgba(33, 34, 38, .08);
+            --theme-button-primary-bg: var(--palette-grey-1200);
+            --theme-button-primary-text: var(--palette-grey-0);
+        }
+
+        /* DARK MODE OVERRIDES - FULL BLACK */
+        [data-theme="dark"] {
+            --theme-surface-surface: #000000;
+            --theme-surface-surface-rgb: 0, 0, 0;
+            --theme-surface-on-surface: var(--palette-grey-0);
+            --theme-surface-on-surface-variant: var(--palette-grey-300);
+            --theme-surface-surface-container: #0A0A0A;
+            --theme-surface-surface-container-rgb: 10, 10, 10;
+            --theme-surface-surface-container-high: #141414;
+            --theme-surface-surface-container-higher: #1F1F1F;
+            --theme-outline-variant: rgba(255, 255, 255, .08);
+            --theme-button-primary-bg: var(--palette-grey-0);
+            --theme-button-primary-text: #000000;
+        }
+
+        /* Smooth Theme Transitions */
+        body, nav, div, section, footer, a, span, h1, h2, h3, h4, p, button {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        html,body,div,span,h1,h2,h3,h4,p,a,ul,li,section,header,nav,footer {
+            margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;
+        }
+
+        body {
+            min-height: 100vh;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--theme-surface-surface);
+            color: var(--theme-surface-on-surface-variant);
+            font-family: Google Sans Flex,Google Sans,sans-serif;
+            font-weight: 400;
+            width: 100%;
+        }
+
+        :root {
+            --landing-main-text-size: 107px; --landing-main-text-line-height: 107px; --landing-main-text-letter-spacing: -2.14px;
+            --6xl-size: 72px; --6xl-line-height: 72px; --6xl-letter-spacing: -1.44px;
+            --5xl-size: 54px; --5xl-line-height: 56.16px; --5xl-letter-spacing: -.95px;
+            --4xl-size: 42px; --4xl-line-height: 43.68px; --4xl-letter-spacing: -.73px;
+            --3xl-size: 32px; --3xl-line-height: 33.92px; --3xl-letter-spacing: -.15px;
+            --2xl-size: 28px; --2xl-line-height: 30.24px; --2xl-letter-spacing: -.1px;
+            --base-size: 17.5px; --base-line-height: 25.38px; --base-letter-spacing: .18px;
+            --cta-size: 17.5px; --cta-line-height: 25.38px; --cta-letter-spacing: .18px;
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --landing-main-text-size: 56px; --landing-main-text-line-height: 56.04px; --landing-main-text-letter-spacing: -1.12px;
+                --6xl-size: 32px; --6xl-line-height: 33.92px; --6xl-letter-spacing: -.64px;
+                --5xl-size: 28px; --5xl-line-height: 29.6px; --5xl-letter-spacing: -.28px;
+                --4xl-size: 26px; --4xl-line-height: 28.08px; --4xl-letter-spacing: -.26px;
+                --3xl-size: 26px; --3xl-line-height: 28.08px; --3xl-letter-spacing: -.26px;
+                --2xl-size: 24px; --2xl-line-height: 25.92px; --2xl-letter-spacing: -.14px;
+                --base-size: 16px; --base-line-height: 23px; --base-letter-spacing: .16px;
+            }
+        }
+        @media (max-width: 767px) { :root { --landing-main-text-size: 46px; --landing-main-text-line-height: 46.04px; --landing-main-text-letter-spacing: -.92px; } }
+        @media (max-width: 425px) { :root { --landing-main-text-size: 34px; --landing-main-text-line-height: 36.04px; --landing-main-text-letter-spacing: -.6px; } }
+
+        .landing-main { font-size: var(--landing-main-text-size); line-height: var(--landing-main-text-line-height); letter-spacing: var(--landing-main-text-letter-spacing); font-weight: 450; font-variation-settings: "wdth" 100,"opsz" 144 }
+        .heading-2 { font-size: var(--6xl-size); line-height: var(--6xl-line-height); letter-spacing: var(--6xl-letter-spacing); font-weight: 450; }
+        .heading-3 { font-size: var(--5xl-size); line-height: var(--5xl-line-height); letter-spacing: var(--5xl-letter-spacing); font-weight: 450; }
+        .heading-4 { font-size: var(--4xl-size); line-height: var(--4xl-line-height); letter-spacing: var(--4xl-letter-spacing); font-weight: 450; }
+        .heading-5 { font-size: var(--3xl-size); line-height: var(--3xl-line-height); letter-spacing: var(--3xl-letter-spacing); font-weight: 450; }
+        .heading-6 { font-size: var(--2xl-size); line-height: var(--2xl-line-height); letter-spacing: var(--2xl-letter-spacing); font-weight: 450; }
+        .body { font-size: var(--base-size); line-height: var(--base-line-height); letter-spacing: var(--base-letter-spacing); font-weight: 400; }
+        .call-to-action { font-size: var(--cta-size); line-height: var(--cta-line-height); letter-spacing: var(--cta-letter-spacing); font-weight: 450; cursor: pointer; transition: all 0.3s ease; }
+        
+        /* HOVER EFFECTS FOR BUTTONS */
+        .call-to-action:hover, #theme-toggle:hover, #mobile-menu-btn:hover { 
+            opacity: 0.7 !important; 
+        }
+
+        /* ANTIGRAVITY NAVBAR LINK HOVER */
+        .nav-link {
+            padding: 8px 18px;
+            border-radius: 999px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            font-weight: 500;
+        }
+        .nav-link:hover {
+            background-color: var(--theme-surface-surface-container-higher);
+            color: var(--theme-surface-on-surface) !important;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        [data-theme="dark"] .nav-link:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* Subtle custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--theme-surface-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--palette-grey-300); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--palette-grey-400); }
+
+        /* Very Translucent Glassmorphism Helper Class */
+        .glass-card {
+            position: relative;
+            overflow: hidden;
+            background: rgba(var(--theme-surface-surface-container-rgb), 0.35) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--theme-outline-variant);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        [data-theme="light"] .glass-card {
+            background: rgba(var(--theme-surface-surface-rgb), 0.6) !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Premium Shimmer Overlay Effect */
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.7s ease;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        [data-theme="dark"] .glass-card::after {
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+        }
+
+        /* Special Hover State */
+        .glass-card:hover {
+            transform: translateY(-6px) !important;
+            border-color: rgba(66, 133, 244, 0.4) !important; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(66, 133, 244, 0.1) !important;
+        }
+        
+        [data-theme="dark"] .glass-card:hover {
+            border-color: rgba(167, 139, 250, 0.3) !important; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(167, 139, 250, 0.1) !important;
+        }
+
+        .glass-card:hover::after {
+            left: 200%;
+            transition: all 0.7s ease;
+        }
+
+        .glass-nav {
+            background: rgba(var(--theme-surface-surface-rgb), 0.5) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--theme-outline-variant);
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden select-none">
+
+    <!-- STATIC BACKGROUND ENHANCEMENTS WITH FLOATING ANIMATION -->
+    <div class="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
+        <!-- Ambient Glows (Animated) -->
+        <div class="absolute top-[5%] left-[5%] w-[40vw] h-[40vw] rounded-full bg-brand-blue/10 blur-[120px] animate-float-1"></div>
+        <div class="absolute bottom-[10%] right-[5%] w-[35vw] h-[35vw] rounded-full bg-brand-red/10 blur-[120px] animate-float-2"></div>
+        <div class="absolute top-[40%] left-[50%] w-[30vw] h-[30vw] rounded-full bg-brand-yellow/10 blur-[100px] animate-float-3"></div>
+    </div>
+
+    <!-- INTERACTIVE LIFETIME WAVE CANVAS -->
+    <canvas id="particle-canvas" class="fixed inset-0 z-[-1] pointer-events-none w-full h-full opacity-90"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-transparent border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center opacity-0 animate-fade-in-up-1">
+            <a href="#hero" class="text-xl font-bold flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: var(--theme-surface-on-surface);">
+                <span class="tracking-tight text-brand-blue">Zakariae.</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-1 items-center" style="color: var(--theme-surface-on-surface-variant);">
+                <a href="#apropos" class="nav-link">Profil</a>
+                <a href="#competences" class="nav-link">Expertise</a>
+                <a href="#experience" class="nav-link">Expérience</a>
+                <a href="#projets" class="nav-link">Projets</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+            </div>
+
+            <!-- Controls (Theme + Resume + Mobile Menu) -->
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle Icon -->
+                <button id="theme-toggle" class="p-2 rounded-full transition-colors hover:bg-gray-500/10 flex items-center justify-center" style="color: var(--theme-surface-on-surface);" aria-label="Toggle Theme">
+                    <!-- Icon is injected via JS -->
+                </button>
+                
+                <!-- Navbar Button (Antigravity Style) -->
+                <a href="myResume.pdf" download="Zakariae_Elghouali_CV.pdf" class="hidden md:flex px-5 py-2.5 rounded-full text-sm font-semibold transition-transform hover:-translate-y-0.5 items-center gap-2 shadow-sm" style="background: var(--theme-button-primary-bg); color: var(--theme-button-primary-text);">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    CV
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full transition-colors hover:bg-gray-500/10 flex items-center justify-center" style="color: var(--theme-surface-on-surface);">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full p-4 flex-col gap-2 shadow-2xl glass-nav">
+            <a href="#apropos" class="mobile-link nav-link block text-center" style="color: var(--theme-surface-on-surface);">Profil</a>
+            <a href="#competences" class="mobile-link nav-link block text-center" style="color: var(--theme-surface-on-surface);">Expertise</a>
+            <a href="#experience" class="mobile-link nav-link block text-center" style="color: var(--theme-surface-on-surface);">Expérience</a>
+            <a href="#projets" class="mobile-link nav-link block text-center" style="color: var(--theme-surface-on-surface);">Projets</a>
+            <a href="#certifications" class="mobile-link nav-link block text-center" style="color: var(--theme-surface-on-surface);">Certifications</a>
+            <!-- Mobile CV Download -->
+            <a href="myResume.pdf" download="Zakariae_Elghouali_CV.pdf" class="mobile-link mt-2 text-center py-3 px-4 rounded-full transition-transform hover:-translate-y-1 font-semibold" style="background: var(--theme-button-primary-bg); color: var(--theme-button-primary-text);">Télécharger CV</a>
+        </div>
+    </nav>
+
+    <main class="max-w-[1200px] mx-auto px-6 pt-32 pb-20 space-y-40 relative z-10">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-[75vh] flex flex-col justify-center items-center text-center relative pointer-events-none">
+            <div class="pointer-events-auto">
+                <h1 class="landing-main mb-6 opacity-0 animate-fade-in-up-2" style="color: var(--theme-surface-on-surface);">
+                    Ingénieur Data & Cloud <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-brand-purple to-brand-red drop-shadow-sm">Architectures Scalables</span>
+                </h1>
+                
+                <p class="body max-w-2xl mx-auto mb-10 opacity-0 animate-fade-in-up-3" style="color: var(--theme-surface-on-surface-variant);">
+                    Élève-ingénieur spécialisé en Big Data et Cloud Computing. Je conçois des infrastructures distribuées robustes et déploie des modèles d'intelligence artificielle pour transformer la donnée brute en leviers décisionnels.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 items-center justify-center opacity-0 animate-fade-in-up-4">
+                    <a href="#projets" class="call-to-action px-8 py-3.5 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg" 
+                       style="background: var(--theme-button-primary-bg); color: var(--theme-button-primary-text);">
+                        Découvrir les réalisations
+                    </a>
+                </div>
+
+                <!-- Social Links (With Icons) -->
+                <div class="flex justify-center gap-6 mt-12 opacity-0 animate-fade-in-up-4">
+                    <a href="https://github.com/Elghouali" target="_blank" class="p-3 rounded-full hover:-translate-y-1 transition-all" style="background: var(--theme-surface-surface-container); color: var(--theme-surface-on-surface);" aria-label="GitHub">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/zakariae-elghouali-44170b280" target="_blank" class="p-3 rounded-full hover:-translate-y-1 transition-all" style="background: var(--theme-surface-surface-container); color: var(--theme-surface-on-surface);" aria-label="LinkedIn">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="mailto:elghoualizakariae@gmail.com" class="p-3 rounded-full hover:-translate-y-1 transition-all" style="background: var(--theme-surface-surface-container); color: var(--theme-surface-on-surface);" aria-label="Email">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT & EDUCATION -->
+        <section id="apropos" class="scroll-mt-32 pointer-events-auto">
+            <div class="flex flex-col items-center gap-4 mb-16 text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="heading-3 tracking-tight" style="color: var(--theme-surface-on-surface);">Profil & Parcours Académique</h2>
+                <p class="body max-w-2xl">Une approche analytique solide dédiée à la conception de systèmes distribués.</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-2 body space-y-4 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
+                    <p>
+                        En cours de spécialisation en <strong style="color: var(--theme-surface-on-surface);">Big Data et Cloud Computing</strong> à l'ENSET Mohammedia, je cultive une démarche d'ingénierie centrée sur l'optimisation, la scalabilité et la sécurité.
+                    </p>
+                    <p>
+                        Issu des Classes Préparatoires aux Grandes Écoles (filière PSI), j'ai développé une grande rigueur scientifique. Mon ambition est de valoriser les données massives à travers des architectures cloud pérennes et des algorithmes performants.
+                    </p>
+                </div>
+                
+                <div class="md:col-span-3 space-y-8 border-l-2 pl-8 relative" style="border-color: var(--theme-surface-surface-container-high);">
+                    <div class="relative p-6 rounded-2xl transition-shadow glass-card reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200">
+                        <div class="absolute -left-[45px] top-6 w-5 h-5 rounded-full bg-brand-blue ring-4" style="--tw-ring-color: var(--theme-surface-surface);"></div>
+                        <span class="text-sm font-semibold text-brand-blue mb-1 block uppercase tracking-wider">2024 — 2027 (Diplôme Prévu)</span>
+                        <h3 class="heading-6" style="color: var(--theme-surface-on-surface);">Cycle d'Ingénieur : Big Data & Cloud Computing</h3>
+                        <p class="body mt-1">ENSET Mohammedia, Maroc</p>
+                    </div>
+                    
+                    <div class="relative p-6 rounded-2xl transition-shadow glass-card reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300">
+                        <div class="absolute -left-[45px] top-6 w-5 h-5 rounded-full ring-4" style="background: var(--palette-grey-300); --tw-ring-color: var(--theme-surface-surface);"></div>
+                        <span class="text-sm font-semibold mb-1 block uppercase tracking-wider" style="color: var(--palette-grey-300);">2022 — 2024</span>
+                        <h3 class="heading-6" style="color: var(--theme-surface-on-surface);">Classes Préparatoires aux Grandes Écoles (PSI)</h3>
+                        <p class="body mt-1">CPGE Ibn Ghazi, Marrakech, Maroc</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS (BENTO GRID DESIGN) -->
+        <section id="competences" class="scroll-mt-32 pointer-events-auto">
+            <div class="flex flex-col items-center gap-4 mb-16 text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="heading-3 tracking-tight" style="color: var(--theme-surface-on-surface);">Écosystème Technique</h2>
+                <p class="body max-w-2xl">Une maîtrise approfondie des standards de l'industrie pour construire des solutions résilientes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Bento Card 1 : Cloud (Span 2) -->
+                <div class="md:col-span-2 p-8 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-100 flex flex-col justify-between group">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style="background: rgba(66, 133, 244, 0.1); color: var(--theme-surface-on-surface);">
+                             <i data-lucide="cloud" class="w-6 h-6 text-brand-blue"></i>
+                        </div>
+                        <span class="font-mono text-sm font-bold opacity-40 transition-opacity group-hover:opacity-100" style="color: var(--theme-surface-on-surface-variant);">01</span>
+                    </div>
+                    <div>
+                        <h3 class="heading-5 mb-6" style="color: var(--theme-surface-on-surface);">Infrastructures Cloud</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">AWS</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Google Cloud</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Microsoft Azure</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Docker & Kubernetes</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Linux & Shell Scripting</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">VMware vSphere</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bento Card 2 : Data (Span 1) -->
+                <div class="md:col-span-1 p-8 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-200 flex flex-col justify-between group">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style="background: rgba(234, 67, 53, 0.1); color: var(--theme-surface-on-surface);">
+                             <i data-lucide="network" class="w-6 h-6 text-brand-red"></i>
+                        </div>
+                        <span class="font-mono text-sm font-bold opacity-40 transition-opacity group-hover:opacity-100" style="color: var(--theme-surface-on-surface-variant);">02</span>
+                    </div>
+                    <div>
+                        <h3 class="heading-5 mb-6" style="color: var(--theme-surface-on-surface);">Data & IA</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Hadoop (Spark, Hive)</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">ZooKeeper</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Machine & Deep Learning</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Python & Spring AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Card 3 : Backend (Span 1) -->
+                <div class="md:col-span-1 p-8 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-100 flex flex-col justify-between group">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style="background: rgba(251, 188, 4, 0.1); color: var(--theme-surface-on-surface);">
+                             <i data-lucide="layers" class="w-6 h-6 text-brand-yellow"></i>
+                        </div>
+                        <span class="font-mono text-sm font-bold opacity-40 transition-opacity group-hover:opacity-100" style="color: var(--theme-surface-on-surface-variant);">03</span>
+                    </div>
+                    <div>
+                        <h3 class="heading-5 mb-6" style="color: var(--theme-surface-on-surface);">Backend API</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Java / JEE</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Spring Boot & Cloud</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Microservices</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Oracle DB / SQL</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">C & C++</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Card 4 : Frontend (Span 2) -->
+                <div class="md:col-span-2 p-8 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-200 flex flex-col justify-between group">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center transition-colors" style="background: rgba(167, 139, 250, 0.1); color: var(--theme-surface-on-surface);">
+                             <i data-lucide="layout" class="w-6 h-6 text-brand-purple"></i>
+                        </div>
+                        <span class="font-mono text-sm font-bold opacity-40 transition-opacity group-hover:opacity-100" style="color: var(--theme-surface-on-surface-variant);">04</span>
+                    </div>
+                    <div>
+                        <h3 class="heading-5 mb-6" style="color: var(--theme-surface-on-surface);">Interface & Mobile</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Angular</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">JavaScript (ES6+)</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">Tailwind CSS & Bootstrap</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">HTML5 / CSS3</span>
+                            <span class="text-sm font-medium px-4 py-2 rounded-full border transition-colors" style="border-color: var(--theme-outline-variant); color: var(--theme-surface-on-surface-variant); background: rgba(var(--theme-surface-surface-rgb), 0.3);">App Mobile Android (Java)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" class="scroll-mt-32 pointer-events-auto">
+            <div class="flex flex-col items-center gap-4 mb-16 text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="heading-3 tracking-tight" style="color: var(--theme-surface-on-surface);">Expérience Professionnelle</h2>
+            </div>
+
+            <div class="p-10 rounded-[2rem] transition-all duration-700 ease-out relative overflow-hidden glass-card reveal-on-scroll opacity-0 translate-y-8 delay-100">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-blue/5 rounded-bl-[100px] -z-10 pointer-events-none"></div>
+                
+                <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                    <div>
+                        <h3 class="heading-5" style="color: var(--theme-surface-on-surface);">Administrateur Système (Stagiaire)</h3>
+                        <p class="text-brand-blue font-medium mt-1">Ministère de l'Éducation Nationale — Système "Massar"</p>
+                    </div>
+                    <div class="text-brand-blue px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap" style="background: rgba(66, 133, 244, 0.15);">
+                        Juin 2025 — Août 2025
+                    </div>
+                </div>
+                
+                <p class="body mb-8">
+                    Intégration au sein de la DSI pour l'administration et le maintien en condition opérationnelle du système d'information éducatif national, une infrastructure critique traitant les données de millions d'utilisateurs.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8 body">
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand-green font-bold shrink-0">—</span>
+                        <span>Maintien d'un <strong style="color: var(--theme-surface-on-surface);">taux de disponibilité de 99,5%</strong> des services lors des périodes de forte affluence (inscriptions).</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand-green font-bold shrink-0">—</span>
+                        <span>Support technique : résolution de plus de <strong style="color: var(--theme-surface-on-surface);">150 incidents</strong> avec un taux de satisfaction de 95% et optimisation réduisant le temps de traitement de 30%.</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand-green font-bold shrink-0">—</span>
+                        <span>Analyse de données : conception de <strong style="color: var(--theme-surface-on-surface);">requêtes SQL complexes</strong> et génération de rapports de performance décisionnels.</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-brand-green font-bold shrink-0">—</span>
+                        <span>Assurance Qualité : détection, documentation et escalade de <strong style="color: var(--theme-surface-on-surface);">12 anomalies critiques</strong> corrigées dans les itérations suivantes.</span>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 flex-wrap pt-6 border-t" style="border-color: var(--theme-outline-variant);">
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-full" style="background: rgba(var(--theme-surface-surface-container-rgb), 0.6); color: var(--theme-surface-on-surface);">SQL</span>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-full" style="background: rgba(var(--theme-surface-surface-container-rgb), 0.6); color: var(--theme-surface-on-surface);">Oracle Database</span>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-full" style="background: rgba(var(--theme-surface-surface-container-rgb), 0.6); color: var(--theme-surface-on-surface);">Administration Linux</span>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-full" style="background: rgba(var(--theme-surface-surface-container-rgb), 0.6); color: var(--theme-surface-on-surface);">Shell Scripting</span>
+                    <span class="text-xs font-semibold px-3 py-1.5 rounded-full" style="background: rgba(var(--theme-surface-surface-container-rgb), 0.6); color: var(--theme-surface-on-surface);">Processus ITIL</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projets" class="scroll-mt-32 pointer-events-auto">
+            <div class="flex flex-col items-center gap-4 mb-16 text-center reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out">
+                <h2 class="heading-3 tracking-tight" style="color: var(--theme-surface-on-surface);">Réalisations Techniques</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="group flex flex-col justify-between p-10 rounded-[2rem] transition-all duration-500 hover:-translate-y-2 glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-100">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="heading-5 group-hover:text-brand-purple transition-colors" style="color: var(--theme-surface-on-surface);">DMU-Maroc : Architecture Cloud</h3>
+                            <a href="#" class="p-2 -mr-2 rounded-full transition-colors hover:bg-brand-purple/10" style="color: var(--theme-surface-on-surface);" aria-label="Lien Externe">
+                                <i data-lucide="external-link" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                        <p class="body mb-8">
+                            Conception d'une plateforme cloud nationale hautement sécurisée centralisant les dossiers médicaux. Mise en œuvre de protocoles stricts pour garantir l'intégrité, la confidentialité et la haute disponibilité des données de santé.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-xs font-semibold text-brand-purple px-3 py-1.5 rounded-full" style="background: rgba(167, 139, 250, 0.15);">JEE</span>
+                        <span class="text-xs font-semibold text-brand-purple px-3 py-1.5 rounded-full" style="background: rgba(167, 139, 250, 0.15);">Spring Cloud</span>
+                        <span class="text-xs font-semibold text-brand-purple px-3 py-1.5 rounded-full" style="background: rgba(167, 139, 250, 0.15);">Cloud Security</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group flex flex-col justify-between p-10 rounded-[2rem] transition-all duration-500 hover:-translate-y-2 glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-200">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="heading-5 group-hover:text-brand-blue transition-colors" style="color: var(--theme-surface-on-surface);">Détection de Tumeurs par IA</h3>
+                            <a href="#" class="p-2 -mr-2 rounded-full transition-colors hover:bg-brand-blue/10" style="color: var(--theme-surface-on-surface);" aria-label="Code Source sur GitHub">
+                                <i data-lucide="github" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                        <p class="body mb-8">
+                            Développement et entraînement d'un réseau de neurones profonds dédié à l'analyse d'imagerie médicale (IRM). Optimisation de l'algorithme pour maximiser la précision de la détection précoce des anomalies cérébrales.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-xs font-semibold text-brand-blue px-3 py-1.5 rounded-full" style="background: rgba(66, 133, 244, 0.15);">Python</span>
+                        <span class="text-xs font-semibold text-brand-blue px-3 py-1.5 rounded-full" style="background: rgba(66, 133, 244, 0.15);">Machine Learning</span>
+                        <span class="text-xs font-semibold text-brand-blue px-3 py-1.5 rounded-full" style="background: rgba(66, 133, 244, 0.15);">Computer Vision</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group flex flex-col justify-between p-10 rounded-[2rem] transition-all duration-500 hover:-translate-y-2 glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-100">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="heading-5 group-hover:text-brand-red transition-colors" style="color: var(--theme-surface-on-surface);">Virtualisation Datacenter</h3>
+                            <a href="#" class="p-2 -mr-2 rounded-full transition-colors hover:bg-brand-red/10" style="color: var(--theme-surface-on-surface);" aria-label="Lien Externe">
+                                <i data-lucide="external-link" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                        <p class="body mb-8">
+                            Orchestration et déploiement d'une infrastructure de virtualisation complète de bout en bout sous VMware vSphere et vCenter, intégrant des mécanismes avancés de haute disponibilité et de tolérance aux pannes.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-xs font-semibold text-brand-red px-3 py-1.5 rounded-full" style="background: rgba(234, 67, 53, 0.15);">VMware</span>
+                        <span class="text-xs font-semibold text-brand-red px-3 py-1.5 rounded-full" style="background: rgba(234, 67, 53, 0.15);">vSphere</span>
+                        <span class="text-xs font-semibold text-brand-red px-3 py-1.5 rounded-full" style="background: rgba(234, 67, 53, 0.15);">Infra as Code</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="group flex flex-col justify-between p-10 rounded-[2rem] transition-all duration-500 hover:-translate-y-2 glass-card reveal-on-scroll opacity-0 translate-y-8 ease-out delay-200">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="heading-5 group-hover:text-brand-yellow transition-colors" style="color: var(--theme-surface-on-surface);">ERP de Gestion (ENSET)</h3>
+                            <a href="#" class="p-2 -mr-2 rounded-full transition-colors hover:bg-brand-yellow/10" style="color: var(--theme-surface-on-surface);" aria-label="Code Source sur GitHub">
+                                <i data-lucide="github" class="w-6 h-6"></i>
+                            </a>
+                        </div>
+                        <p class="body mb-8">
+                            Conception et développement d'une plateforme applicative full-stack visant à digitaliser et automatiser les processus de gestion des ressources logistiques, des clubs et de la vie étudiante du campus.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="text-xs font-semibold text-brand-yellow px-3 py-1.5 rounded-full" style="background: rgba(251, 188, 4, 0.15);">Angular</span>
+                        <span class="text-xs font-semibold text-brand-yellow px-3 py-1.5 rounded-full" style="background: rgba(251, 188, 4, 0.15);">Spring Boot</span>
+                        <span class="text-xs font-semibold text-brand-yellow px-3 py-1.5 rounded-full" style="background: rgba(251, 188, 4, 0.15);">REST API</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS & EXTRA -->
+        <section id="certifications" class="scroll-mt-32 pb-10 pointer-events-auto">
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Certifications -->
+                <div class="p-10 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
+                    <h2 class="heading-6 mb-8" style="color: var(--theme-surface-on-surface);">Certifications Officielles</h2>
+                    <div class="space-y-6">
+                        <div class="p-6 rounded-2xl border" style="background: rgba(var(--theme-surface-surface-rgb), 0.3); border-color: var(--theme-outline-variant);">
+                            <h4 class="font-bold mb-3 flex items-center gap-2" style="color: var(--theme-surface-on-surface);">
+                                <span class="text-brand-blue">■</span> Oracle (2025)
+                            </h4>
+                            <ul class="space-y-2 body">
+                                <li>• AI Vector Search Certified Professional</li>
+                                <li>• Generative AI Certified Professional</li>
+                                <li>• Data Science Certified Professional</li>
+                                <li>• AI Foundations Associate</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-6 rounded-2xl border" style="background: rgba(var(--theme-surface-surface-rgb), 0.3); border-color: var(--theme-outline-variant);">
+                            <h4 class="font-bold mb-3 flex items-center gap-2" style="color: var(--theme-surface-on-surface);">
+                                <span class="text-brand-red">■</span> Cisco & AWS
+                            </h4>
+                            <ul class="space-y-2 body">
+                                <li>• AWS Educate : Introduction to Cloud 101</li>
+                                <li>• Cisco CCNA : Introduction to Networks</li>
+                                <li>• Cisco Python Institute : Essentials 1 & 2</li>
+                                <li>• Cisco Linux Unhatched</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extra-curricular -->
+                <div class="p-10 rounded-[2rem] glass-card reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200">
+                    <h2 class="heading-6 mb-8" style="color: var(--theme-surface-on-surface);">Engagement & Leadership</h2>
+                    <div class="space-y-8">
+                        <div class="group border-l-4 pl-6 transition-colors" style="border-color: var(--theme-outline-variant);">
+                            <h4 class="font-bold text-lg group-hover:text-brand-blue transition-colors" style="color: var(--theme-surface-on-surface);">Responsable Communication Numérique</h4>
+                            <p class="text-sm font-semibold text-brand-blue mb-2">AWS Club ENSET Mohammedia</p>
+                            <p class="body">Élaboration de la stratégie numérique et création de supports techniques pour démocratiser l'accès aux technologies cloud computing auprès des étudiants.</p>
+                        </div>
+                        
+                        <div class="group border-l-4 pl-6 transition-colors" style="border-color: var(--theme-outline-variant);">
+                            <h4 class="font-bold text-lg group-hover:text-brand-yellow transition-colors" style="color: var(--theme-surface-on-surface);">Analyste Financier (Simulation)</h4>
+                            <p class="text-sm font-semibold text-brand-yellow mb-2">e-bourse Casablanca</p>
+                            <p class="body">Gestion analytique d'un portefeuille d'actifs de 1M MAD, incluant l'évaluation des ratios financiers (P/E) et l'analyse prédictive des tendances de marché.</p>
+                        </div>
+
+                        <div class="group border-l-4 pl-6 transition-colors" style="border-color: var(--theme-outline-variant);">
+                            <h4 class="font-bold text-lg group-hover:text-brand-red transition-colors" style="color: var(--theme-surface-on-surface);">Coordinateur Événementiel</h4>
+                            <p class="text-sm font-semibold text-brand-red mb-2">Global Entrepreneurship Week</p>
+                            <p class="body">Pilotage et coordination des campagnes de communication visant à promouvoir l'entrepreneuriat technologique et l'innovation.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-10 text-center relative z-10 glass-card">
+        <div class="flex justify-center gap-6 mb-6 text-sm font-medium tracking-wide">
+            <a href="https://github.com/Elghouali" target="_blank" class="hover:text-brand-blue hover:underline transition-colors" style="color: var(--theme-surface-on-surface);">
+                <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+            <a href="https://linkedin.com/in/zakariae-elghouali-44170b280" target="_blank" class="hover:text-[#0a66c2] hover:underline transition-colors" style="color: var(--theme-surface-on-surface);">
+                <i data-lucide="linkedin" class="w-6 h-6"></i>
+            </a>
+            <a href="mailto:elghoualizakariae@gmail.com" class="hover:text-brand-red hover:underline transition-colors" style="color: var(--theme-surface-on-surface);">
+                <i data-lucide="mail" class="w-6 h-6"></i>
+            </a>
+        </div>
+        <p class="body font-medium" style="color: var(--theme-surface-on-surface-variant);">
+            © <script>document.write(new Date().getFullYear())</script> Zakariae Elghouali. Construit pour l'excellence.
+        </p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 rounded-full shadow-lg opacity-0 translate-y-10 transition-all duration-300 z-50 pointer-events-none glass-card hover:bg-brand-blue/20" style="color: var(--theme-surface-on-surface);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <!-- Interactive Scripts -->
+    <script>
+        /* =========================================
+           SCROLL REVEAL ANIMATIONS
+           ========================================= */
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { 
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1 
+        });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        /* =========================================
+           THEME TOGGLE LOGIC (LIGHT / DARK)
+           ========================================= */
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const rootElement = document.documentElement;
+
+        let currentTheme = localStorage.getItem('theme') || 'dark';
+        rootElement.setAttribute('data-theme', currentTheme);
+        
+        // Ensure Lucide icons initialize correctly on load
+        lucide.createIcons();
+        updateThemeToggleIcon();
+
+        themeToggleBtn.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            rootElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            updateThemeToggleIcon();
+        });
+
+        function updateThemeToggleIcon() {
+            // Rewrite HTML so Lucide creates the new SVG icon
+            themeToggleBtn.innerHTML = currentTheme === 'light' 
+                ? '<i data-lucide="moon" class="w-5 h-5"></i>' 
+                : '<i data-lucide="sun" class="w-5 h-5"></i>';
+            lucide.createIcons();
+        }
+
+        /* =========================================
+           NAVBAR SCROLL & BACK TO TOP
+           ========================================= */
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-nav');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-3');
+            } else {
+                navbar.classList.remove('glass-nav');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-3');
+            }
+
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                backToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                backToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            
+            // Toggle between menu and x icons dynamically
+            if (mobileMenu.classList.contains('hidden')) {
+                menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+            } else {
+                menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+            }
+            lucide.createIcons();
+        };
+
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        /* =========================================
+           LIFETIME CONTINUOUS MESH WAVE (CANVAS)
+           ========================================= */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        
+        let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+        const maxDist = 250; 
+        
+        let points = [];
+        let cols, rows;
+        const spacing = 45; 
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            points = [];
+            
+            cols = Math.ceil(width / spacing) + 1;
+            rows = Math.ceil(height / spacing) + 1;
+
+            for (let i = 0; i <= cols; i++) {
+                points[i] = [];
+                for (let j = 0; j <= rows; j++) {
+                    points[i][j] = {
+                        baseX: i * spacing,
+                        baseY: j * spacing,
+                        x: i * spacing,
+                        y: j * spacing,
+                    };
+                }
+            }
+        }
+
+        window.addEventListener('resize', initCanvas);
+        
+        window.addEventListener('mousemove', (e) => {
+            mouse.targetX = e.clientX;
+            mouse.targetY = e.clientY;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.targetX = e.touches[0].clientX;
+                mouse.targetY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        document.body.addEventListener('mouseleave', () => { mouse.targetX = -1000; mouse.targetY = -1000; });
+        window.addEventListener('touchend', () => { mouse.targetX = -1000; mouse.targetY = -1000; });
+
+        let time = 0;
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            time += 0.015; 
+            
+            mouse.x += (mouse.targetX - mouse.x) * 0.1;
+            mouse.y += (mouse.targetY - mouse.y) * 0.1;
+
+            const isDark = rootElement.getAttribute('data-theme') === 'dark';
+            const dotColor = isDark ? 'rgba(167, 139, 250, 0.5)' : 'rgba(66, 133, 244, 0.4)'; 
+            const lineColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(32, 33, 36, 0.04)';
+
+            for (let i = 0; i <= cols; i++) {
+                for (let j = 0; j <= rows; j++) {
+                    let p = points[i][j];
+
+                    const waveX = Math.sin(j * 0.2 + time) * 12;
+                    const waveY = Math.cos(i * 0.2 + time) * 12 + Math.sin(i * 0.1 + j * 0.1 + time) * 8;
+
+                    let targetX = p.baseX + waveX;
+                    let targetY = p.baseY + waveY;
+
+                    const dx = mouse.x - targetX;
+                    const dy = mouse.y - targetY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDist) {
+                        const force = Math.pow((maxDist - dist) / maxDist, 2);
+                        targetX -= (dx / dist) * force * 40;
+                        targetY -= (dy / dist) * force * 40;
+                    }
+
+                    p.x += (targetX - p.x) * 0.2;
+                    p.y += (targetY - p.y) * 0.2;
+                }
+            }
+
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            for (let i = 0; i <= cols; i++) {
+                for (let j = 0; j <= rows; j++) {
+                    const p = points[i][j];
+                    if (i < cols) {
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(points[i+1][j].x, points[i+1][j].y);
+                    }
+                    if (j < rows) {
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(points[i][j+1].x, points[i][j+1].y);
+                    }
+                }
+            }
+            ctx.stroke();
+
+            ctx.fillStyle = dotColor;
+            for (let i = 0; i <= cols; i++) {
+                for (let j = 0; j <= rows; j++) {
+                    ctx.beginPath();
+                    ctx.arc(points[i][j].x, points[i][j].y, 1.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(animateCanvas);
+        }
+
+        initCanvas();
+        animateCanvas();
+    </script>
+</body>
+</html>

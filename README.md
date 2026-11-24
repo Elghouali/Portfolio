@@ -1,28 +1,56 @@
 # Zakariae Elghouali — Engineering Portfolio
 
-**Personal portfolio focused on Data Engineering, Cloud Computing, and applied AI.**
+**Data Engineering · Big Data & Cloud Computing · Applied AI**
 
-[![Website](https://img.shields.io/badge/Portfolio-Visit-181717?logo=vercel&logoColor=white)](https://portfolio-elghoualis-projects.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Elghouali-181717?logo=github&logoColor=white)](https://github.com/Elghouali)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/elghouali/)
+[Portfolio website](https://portfolio-elghoualis-projects.vercel.app) · [GitHub](https://github.com/Elghouali) · [LinkedIn](https://www.linkedin.com/in/zakariae-elghouali/) · [Current CV (print-friendly)](resumeBase/resume.html)
 
-## About
+Engineering student at ENSET Mohammedia, Morocco (2024–2027 expected), seeking a **PFE 2027 in Data Engineering / Cloud**. My work focuses on batch and streaming pipelines, lakehouses, cloud analytics, and applied AI.
 
-I'm a Computer Engineering student specializing in **Big Data & Cloud Computing** at **ENSET Mohammedia, Morocco**. This portfolio presents my technical projects, background, and interests in data platforms, distributed applications, and AI engineering.
+## Professional experience
 
-## Project structure
+| Organization | Role | Period |
+|---|---|---|
+| OCP Group — IROC | Cloud & Computer Vision Engineering Intern (PFA): water-leak detection, AWS S3/SNS architecture, technical documentation | Jul–Aug 2026 |
+| Ministry of National Education — Massar | Information Systems Intern: data synchronization, database maintenance, SQL tuning | Jun–Aug 2025 |
+
+## Data engineering and cloud
+
+- [CDC Medallion Lakehouse](https://github.com/Elghouali/cdc-pipeline-bigdata) — PostgreSQL, Debezium, Kafka, Spark, Iceberg, Trino, FastAPI and React. Local reference stack.
+- AWS Serverless Data Lake & ETL (2026) — S3, Glue, PySpark, Athena, Redshift.
+- GCP Serverless Data Pipeline & Analytics (2026) — Cloud Storage, Pub/Sub, Apache Beam/Dataflow, BigQuery.
+- Databricks Medallion Architecture (2025) — Delta Lake, S3, PySpark, Airflow.
+
+The last three projects are described in the current CV; separate public source links have not been verified.
+
+## Recent initiatives and projects
+
+| Project | Status / scope |
+|---|---|
+| [KODYRA — Software & Data Studio](https://github.com/Elghouali/kodyra-website) | Early-stage entrepreneurial initiative and bilingual showcase |
+| [KODYRA FleetOps](https://github.com/Elghouali/kodyra-fleetops) · [Live demo](https://kodyra-fleetops-live.elghoualizakariae.workers.dev/) | Rental operations prototype with fictional data; browser-local persistence, not a production system |
+| [Engineering Apprenticeship](https://github.com/Elghouali/engineering-apprenticeship) | GitHub-native, hands-on engineering learning initiative; in development |
+| [Local LLM Chatbot & Benchmark](https://github.com/Elghouali/ENSET-Chatbot-LLM-Comparison) | Academic Ollama/Streamlit comparison and performance measurement |
+| [Advanced RAG Chatbot](https://github.com/Elghouali/ENSET-Advanced-RAG-Chatbot) | Newly initialized academic project, in progress |
+| [Spring Cloud & Agentic AI](https://github.com/Elghouali/Projet-Synthese-SpringCloud-AgenticAI-EBank) | Academic banking microservices and read-only MCP assistant; integrated tests pending |
+| [Kafka Event-Driven Architecture](https://github.com/Elghouali/TP3-Kafka-Event-Driven-Architecture) | Academic event-driven architecture exercise |
+
+## Credentials and learning paths
+
+- Microsoft Certified: Fabric Data Engineer Associate
+- AWS Data Engineer Learning Path (Skill Builder); AWS Educate Cloud 101
+- GCP Professional Data Engineer Learning Path (Skills Boost)
+- OCI Data Science Professional, GenAI Professional, AI Foundations
+
+Learning paths are not represented as professional certification exams.
+
+## Website structure and local preview
 
 ```text
 resumeBase/
-├── index.html    Static portfolio website
-└── resume.pdf    Resume asset
+├── index.html    Responsive French portfolio, embedded CSS and JavaScript
+├── resume.html   Current English, printable public CV
+└── resume.pdf    Legacy PDF asset; not linked from the current website
 ```
-
-The website is a single HTML page with embedded CSS and JavaScript. It includes responsive styling and a light/dark theme.
-
-## Preview locally
-
-Clone the repository and open `resumeBase/index.html` in a browser. A simple static file server may be used if your browser restricts local assets.
 
 ```bash
 git clone https://github.com/Elghouali/Portfolio.git
@@ -30,20 +58,8 @@ cd Portfolio
 python -m http.server 8000 --directory resumeBase
 ```
 
-Then visit **http://localhost:8000**.
-
-## Selected engineering projects
-
-- [CDC Lakehouse — Kafka, Spark, Iceberg](https://github.com/Elghouali/cdc-pipeline-bigdata)
-- [Kafka Event-Driven Architecture](https://github.com/Elghouali/TP3-Kafka-Event-Driven-Architecture)
-- [Local LLM Chatbot & Benchmark](https://github.com/Elghouali/ENSET-Chatbot-LLM-Comparison)
-- [Spring Cloud & Agentic AI](https://github.com/Elghouali/Projet-Synthese-SpringCloud-AgenticAI-EBank)
+Open http://localhost:8000. The CV page can be printed or saved as PDF through the browser. The public CV intentionally omits the personal phone number. The site retains its light/dark theme and animated pipeline visualization.
 
 ## Contact
 
-For internship opportunities and engineering collaborations:
-
-- **Email:** [elghoualizakariae@gmail.com](mailto:elghoualizakariae@gmail.com)
-- **LinkedIn:** [linkedin.com/in/elghouali](https://www.linkedin.com/in/elghouali/)
-
-**Note:** Review the publicly served `resume.pdf` before deploying, as resumes can include personal contact details.
+[Email](mailto:elghoualizakariae@gmail.com) · [LinkedIn](https://www.linkedin.com/in/zakariae-elghouali/) · [GitHub](https://github.com/Elghouali)
